@@ -1,0 +1,28 @@
+{
+  "timezone": "Asia/Seoul",
+  "schedule": {
+    "time": "07:30"
+  },
+  "email": {
+    "recipients": [
+      "your-email@example.com"
+    ]
+  },
+  "stocks": [
+    {
+      "name": "삼성전자",
+      "stock_code": "005930",
+      "corp_code": "00126380"
+    },
+    {
+      "name": "SK하이닉스",
+      "stock_code": "000660",
+      "corp_code": "00164779"
+    },
+    {
+      "name": "현대차",
+      "stock_code": "005380",
+      "corp_code": "00164742"
+    }
+  ]
+}

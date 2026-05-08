@@ -1,0 +1,20 @@
+{
+  "삼성전자": {
+    "stockCode": "005930",
+    "lastReceiptNo": "20260430800106",
+    "lastDisclosureDate": "2026-04-30",
+    "lastDividendPerShare": "372"
+  },
+  "SK하이닉스": {
+    "stockCode": "000660",
+    "lastReceiptNo": "20260422800788",
+    "lastDisclosureDate": "2026-04-22",
+    "lastDividendPerShare": null
+  },
+  "현대차": {
+    "stockCode": "005380",
+    "lastReceiptNo": "20260423800359",
+    "lastDisclosureDate": "2026-04-23",
+    "lastDividendPerShare": null
+  }
+}
