@@ -180,6 +180,44 @@ cp .env.example .env
 
 > 주의: `corp_code`는 OpenDART용 고유번호라서, 종목코드와 다릅니다.
 
+#### stock_code와 corp_code 찾는 방법
+종목명만 알고 있다면 `stock_lookup.py`로 두 코드를 찾을 수 있습니다.
+먼저 `.env`에 `OPENDART_API_KEY`가 들어 있어야 합니다.
+
+```bash
+python3 stock_lookup.py 삼성전자
+```
+
+출력 예시:
+
+```text
+검색어: 삼성전자
+1. 삼성전자
+   stock_code: 005930
+   corp_code : 00126380
+   기준일    : 20260401
+```
+
+찾은 값을 그대로 `config.json`의 `stocks`에 넣으면 됩니다.
+
+```json
+{
+  "name": "삼성전자",
+  "stock_code": "005930",
+  "corp_code": "00126380"
+}
+```
+
+참고:
+- `stock_code`는 네이버증권/KRX/증권앱에서 보이는 6자리 종목코드입니다.
+- `corp_code`는 OpenDART API 조회에 필요한 8자리 회사 고유번호입니다.
+- `stock_lookup.py`는 OpenDART 회사고유번호 목록을 받아 `state/corp_codes.json`에 캐시합니다.
+- 목록을 새로 받고 싶으면 `--refresh`를 붙여 실행하세요.
+
+```bash
+python3 stock_lookup.py 삼성전자 --refresh
+```
+
 #### 메일 전송 시간 변경 방법
 예를 들어 오전 7시 30분 대신 오전 8시 45분으로 바꾸고 싶다면:
 
@@ -361,9 +399,14 @@ gws gmail +send --to your-email@example.com --subject '테스트' --body '정상
 ### 문제 3) 종목 추가했는데 조회 실패
 원인:
 - `corp_code`가 잘못됨
+- 종목명이 비슷한 다른 회사의 코드를 입력함
 
 해결:
-- OpenDART에서 해당 기업의 정확한 `corp_code` 확인
+- 아래 명령으로 `stock_code`와 `corp_code`를 다시 확인
+
+```bash
+python3 stock_lookup.py 종목명 --refresh
+```
 
 ### 문제 4) 출력은 되는데 자동 발송이 안 됨
 원인:
@@ -377,6 +420,7 @@ gws gmail +send --to your-email@example.com --subject '테스트' --body '정상
 ## 10. 파일 설명
 
 - `dividend_alert.py` : 메인 실행 파일
+- `stock_lookup.py` : 종목명으로 `stock_code`와 OpenDART `corp_code`를 찾는 도구
 - `run.sh` : 실행 편의용 스크립트
 - `config.json` : 사용자 설정 파일
 - `config.example.json` : 설정 예시 파일
